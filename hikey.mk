@@ -15,6 +15,8 @@ CFG_SW_CONSOLE_UART ?= 3
 # eMMC flash size: 8 or 4 GB [default 8]
 CFG_FLASH_SIZE ?= 8
 
+CFG_SECURE_DATA_PATH ?= y
+
 ################################################################################
 # Includes
 ################################################################################
@@ -147,6 +149,7 @@ edk2-clean: edk2-clean-common
 LINUX_DEFCONFIG_COMMON_ARCH ?= arm64
 LINUX_DEFCONFIG_COMMON_FILES ?= $(LINUX_PATH)/arch/arm64/configs/defconfig \
 				$(CURDIR)/kconfigs/hikey.conf \
+				$(CURDIR)/kconfigs/ion_unmapped_heap_sdp.conf \
 				$(PATCHES_PATH)/kernel_config/usb_net_dm9601.conf \
 				$(PATCHES_PATH)/kernel_config/ftrace.conf
 

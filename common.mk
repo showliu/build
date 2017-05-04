@@ -113,7 +113,7 @@ endif
 define KERNEL_VERSION
 $(shell cd $(LINUX_PATH) && $(MAKE) --no-print-directory kernelversion)
 endef
-DEBUG ?= 0
+DEBUG ?= 1
 
 ################################################################################
 # default target is all
@@ -250,6 +250,7 @@ OPTEE_OS_COMMON_FLAGS ?= \
 	CROSS_COMPILE_ta_arm64=$(AARCH64_CROSS_COMPILE) \
 	CROSS_COMPILE_ta_arm32=$(AARCH32_CROSS_COMPILE) \
 	CFG_TEE_CORE_LOG_LEVEL=$(CFG_TEE_CORE_LOG_LEVEL) \
+	CFG_SECURE_DATA_PATH=$(CFG_SECURE_DATA_PATH) \
 	DEBUG=$(DEBUG)
 
 optee-os-common:
@@ -280,6 +281,7 @@ XTEST_COMMON_FLAGS ?= CROSS_COMPILE_HOST=$(CROSS_COMPILE_NS_USER)\
 	TA_DEV_KIT_DIR=$(OPTEE_OS_TA_DEV_KIT_DIR) \
 	OPTEE_CLIENT_EXPORT=$(OPTEE_CLIENT_EXPORT) \
 	COMPILE_NS_USER=$(COMPILE_NS_USER) \
+	CFG_SECURE_DATA_PATH=$(CFG_SECURE_DATA_PATH) \
 	O=$(OPTEE_TEST_OUT_PATH)
 
 xtest-common: optee-os optee-client
